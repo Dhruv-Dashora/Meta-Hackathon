@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 16px;
+}
+
+body {
+  @apply bg-slate-100 text-slate-900 antialiased;
+  overflow-x: clip;
+}
+
+:focus-visible {
+  outline: 2px solid #0f766e;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen-only vs print-only helpers. */
+.print-only {
+  display: none;
+}
+
+/* Incident-brief print layout (A4): the linear PrintBrief is the only
+   report content; the interactive dashboard is .screen-only. App chrome
+   is .no-print in markup; web-only controls are hidden below. No forced
+   page breaks anywhere — short briefs stay compact, long ones paginate
+   naturally. */
+@page {
+  size: A4;
+  margin: 14mm 12mm 16mm;
+}
+
+@media print {
+  html {
+    font-size: 11px;
+  }
+
+  body {
+    background: #fff;
+    color: #0f172a;
+    line-height: 1.45;
+    overflow-x: visible;
+  }
+
+  .no-print,
+  .screen-only {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  /* Web-only controls never print, even on non-brief pages. */
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .report-body {
+    display: block;
+  }
+
+  /* --- Brief typography: cover, numbered sections, subheads. --- */
+  .print-brief {
+    overflow-wrap: anywhere;
+  }
+
+  .print-brief > * + * {
+    margin-top: 0.9rem;
+  }
+
+  .print-brief p {
+    margin: 0.2rem 0;
+    orphans: 3;
+    widows: 3;
+  }
+
+  .print-kicker {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #334155;
+  }
+
+  .print-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0.15rem 0;
+  }
+
+  .print-meta {
+    color: #334155;
+    border-bottom: 2px solid #0f766e;
+    padding-bottom: 0.5rem;
+  }
+
+  .print-facts {
+    display: grid;
+    gap: 0.15rem;
+    margin-top: 0.5rem;
+  }
+
+  .print-facts > div {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0.5rem;
+  }
+
+  .print-facts dt {
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .print-facts dd {
+    margin: 0;
+  }
+
+  .print-alert {
+    margin-top: 0.5rem;
+    border: 1px solid #92400e;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .print-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid #94a3b8;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .print-subhead {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .print-dim {
+    color: #475569;
+  }
+
+  /* Plain block lists fragment reliably across pages. */
+  .print-list {
+    margin: 0.3rem 0;
+    padding-left: 1.25rem;
+  }
+
+  .print-list > li + li {
+    margin-top: 0.3rem;
+  }
+
+  .print-steps {
+    padding-left: 1.25rem;
+    margin: 0.2rem 0;
+  }
+
+  .print-steps > li + li {
+    margin-top: 0.15rem;
+  }
+
+  .print-item > * + * {
+    margin-top: 0.1rem;
+  }
+
+  .print-footer {
+    border-top: 1px solid #94a3b8;
+    padding-top: 0.4rem;
+    color: #475569;
+  }
+
+  /* Figures stay with their caption and fit the page; tall images
+     shrink to the page instead of clipping or pushing blank space. */
+  .print-figure {
+    break-inside: avoid;
+    margin: 0.4rem 0;
+  }
+
+  .print-image {
+    display: block;
+    max-width: 100%;
+    max-height: 150mm;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #94a3b8;
+  }
+
+  .print-figure figcaption {
+    margin-top: 0.25rem;
+    color: #475569;
+  }
+
+  /* Long items paginate naturally so complete instructions and
+     uncertainty never clip; the cover fact block holds together while
+     it fits, and orphans/widows above keep breaks readable. */
+  .print-facts {
+    break-inside: avoid;
+  }
+
+  .print-item,
+  .print-item.print-flow {
+    break-inside: auto;
+  }
+
+  .print-brief h2,
+  .print-brief h3,
+  .print-brief h4 {
+    break-after: avoid;
+  }
+
+  .report-body h2,
+  .report-body h3,
+  .report-body h4 {
+    break-after: avoid;
+  }
+
+  /* Annotated evidence on non-brief pages: fit the page, keep each
+     overlay figure with its image. */
+  .report-body img,
+  .report-body svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .report-body a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Provisional and warning cues must survive black-and-white printing. */
+  .report-body code {
+    background: none;
+    border: 1px solid #94a3b8;
+    overflow-wrap: anywhere;
+  }
+
+  /* Expanded details print as plain blocks without markers. */
+  .report-body details > summary {
+    list-style: none;
+  }
+
+  .report-body details > summary::-webkit-details-marker {
+    display: none;
+  }
+}

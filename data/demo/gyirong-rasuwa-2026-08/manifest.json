@@ -1,0 +1,65 @@
+{
+  "dataset": "Gyirong–Rasuwa disaster demo — August 2026, Nepal",
+  "status": "scaffold — no external data downloaded yet",
+  "event": {
+    "name": "August 2026 Gyirong–Rasuwa disaster",
+    "date_range": "2026-08-01/2026-08-31",
+    "description": "Retrospective post-disaster impact assessment + historical comparison demo."
+  },
+  "geographic_coverage": {
+    "corridor": "Gyirong (Tibet) – Rasuwa (Nepal)",
+    "approximate_bbox": {
+      "note": "Placeholder bbox, to refine with licensed GeoJSON",
+      "west": 85.2,
+      "south": 27.9,
+      "east": 86.0,
+      "north": 28.5
+    },
+    "crs": "EPSG:4326"
+  },
+  "sources": [],
+  "planned_sources": [
+    {
+      "id": "TBD-recent-imagery",
+      "kind": "recent post-event images/video frames",
+      "target_dir": "recent/",
+      "source": "TBD — licensed representative imagery only",
+      "licence": "TBD",
+      "attribution": "TBD"
+    },
+    {
+      "id": "TBD-historical-imagery",
+      "kind": "pre-event comparison images",
+      "target_dir": "historical/",
+      "source": "TBD",
+      "licence": "TBD",
+      "attribution": "TBD"
+    },
+    {
+      "id": "TBD-geo",
+      "kind": "roads, buildings, rivers, glacial lakes (GeoJSON)",
+      "target_dir": "geo/",
+      "source": "TBD — open licensed geodata",
+      "licence": "TBD",
+      "attribution": "TBD"
+    },
+    {
+      "id": "TBD-hydromet",
+      "kind": "rainfall, river levels, lake observations (CSV)",
+      "target_dir": "hydromet/",
+      "source": "TBD",
+      "licence": "TBD",
+      "attribution": "TBD"
+    }
+  ],
+  "dates": {
+    "historical_window": "TBD",
+    "recent_window": "2026-08-01/2026-08-31",
+    "manifest_created": "2026-10-31"
+  },
+  "licences": "No data bundled. Each file added later MUST record licence + attribution here.",
+  "notes": [
+    "Do not commit large binaries; prefer documented external sources + hashes.",
+    "Video: extract selected frames for MVP, do not process entire videos."
+  ]
+}

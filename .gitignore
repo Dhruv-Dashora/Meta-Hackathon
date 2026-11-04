@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Backend secrets and runtime storage (SCAFFOLD: gitignored by design)
+backend/.env
+backend/storage/*
+!backend/storage/.gitkeep
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Uploaded user media and runtime artifacts (never commit)
+uploads/
+**/uploads/*
+media/
+**/*.mp4
+**/*.mov
+**/*.avi
+**/*.mkv
+!data/demo/**/manifest.json
+!data/demo/**/.gitkeep
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/check-dist/
+*.local
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Env
+.env
+.env.*
+!.env.example
+!backend/.env.example
+!frontend/.env.example
